@@ -58,8 +58,8 @@
 * How to use
 ** Forward (Emacs \to PDF)
    #+BEGIN_SRC emacs-lisp
-     (use-package syncorg :demand
-       :load-path "~/Dropbox/ProjectWeekends/lisp/synorg/"
+     (use-package synorg :demand
+       :load-path "/path/to/synorg/"
        :config
        (bind-key "C-c v" #'synorg-forward org-mode-map))
    #+END_SRC
