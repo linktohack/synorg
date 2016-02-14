@@ -66,7 +66,7 @@
 
 ** Backward (PDF \to Emacs)
    #+BEGIN_SRC sh
-   /usr/local/bin/emacsclient --no-wait --eval "(link/synorg-backward \"%file\" %line)"
+   /usr/local/bin/emacsclient --no-wait --eval "(synorg-backward \"%file\" %line)"
    #+END_SRC
 
 * LICENSE
