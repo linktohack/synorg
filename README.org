@@ -5,6 +5,8 @@
   Syntex for Org mode
   #+END_QUOTE
 
+  [[file:screenshot.png]]
+
   #+BEGIN_SRC emacs-lisp :tangle synorg.el
     (defun synorg-forward ()
     "Forward syntex for Org.
@@ -18,7 +20,14 @@
         (let ((text (replace-regexp-in-string
                      ;; leading, trailing spaces;
                      ;; backslashes, brackets, curly braces, dollars
-                     "\\(^[ \t]+\\|[ \t]+$\\|\\\\[^ {\\[]*\\|\\[.*\\]\\|{.*}\\|\\$.*\\$\\)" ".*"
+                     ;; bold, verbatim, italic...
+                     (mapconcat #'identity
+                                '("\\(^[* \t]+" "[ \t]+$"
+                                  "\\\\[^ {\\[]*" "\\[.*\\]" "{.*}"
+                                  "\\$.*\\$"
+                                  "- " " \\:\\: "
+                                  "[*\\/_=]+\\)") "\\|")
+                     ".*"
                      (buffer-substring-no-properties
                       (line-beginning-position) (line-end-position))))
               (tex-file (replace-regexp-in-string "org\\'" "tex" (buffer-file-name))))
